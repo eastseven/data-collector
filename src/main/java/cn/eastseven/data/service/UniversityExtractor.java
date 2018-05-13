@@ -1,8 +1,11 @@
 package cn.eastseven.data.service;
 
 import cn.eastseven.data.model.University;
+import cn.eastseven.data.repository.UniversityRepository;
 import com.github.crab2died.ExcelUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
@@ -16,6 +19,8 @@ import java.util.List;
 @Service
 public class UniversityExtractor {
 
+    @Autowired private UniversityRepository repository;
+
     public void start() throws Exception {
         Path path = Paths.get("data", "全国普通高等学校名单.xls");
         List<List<String>> data = ExcelUtils.getInstance().readExcel2List(path.toFile().getPath());
@@ -24,6 +29,9 @@ public class UniversityExtractor {
             University university = new University();
             for (int index = 0; index < line.size(); index++) {
                 String value = line.get(index);
+
+                if (index == 0 && StringUtils.isBlank(value)) continue;
+
                 switch (index) {
                     case 1:
                         university.setName(value);
@@ -48,6 +56,7 @@ public class UniversityExtractor {
             }
 
             log.debug(">>> {}", university);
+            repository.save(university);
         }
     }
 }
