@@ -25,6 +25,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+
         <!-- 汉语言处理包-->
         <dependency>
             <groupId>com.hankcs</groupId>
