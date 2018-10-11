@@ -2,7 +2,6 @@ package cn.eastseven.data.model;
 
 import com.hankcs.hanlp.HanLP;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author eastseven
  */
 @Data
-@NoArgsConstructor
 @Document(collection = "t_area_code")
 public class AreaCode {
 
@@ -33,6 +31,8 @@ public class AreaCode {
     private String county;
 
     private String countyName;
+
+    public AreaCode() {}
 
     public AreaCode(String code, String name) {
         this.code = code;

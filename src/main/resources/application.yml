@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://root:dagteam27017@mongodb.dagteam.cn:27017
+      uri: mongodb://root:dagteam27017@mongodb.dageek.cn:27017
       database: BasicData
 logging.level:
   cn.eastseven.data: debug
